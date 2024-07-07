@@ -1,17 +1,20 @@
-import java.util.Random;
-import java.util.Scanner;
-
 public class Dice {
-    private int numSides;
 
-    public Dice(int numSides) {
-        this.numSides = numSides;
+    int numOfDice;
+
+    public Dice (int numOfDice){
+        this.numOfDice = numOfDice;
     }
 
-    public int roll() {
-        if (numSides <= 0) {
-            throw new IllegalArgumentException("Number of sides must be positive");
+    public int tossAndSum (){
+        int sum = 0;
+        for (int i = 0; i < numOfDice; i++){
+            int diceRoll = (int)(Math.random() * 6 + 1);
+//            System.out.println("one dice roll: " + diceRoll);
+            sum += diceRoll;
         }
-        return (int) (Math.random() * numSides) + 1;
+//        System.out.println(sum);
+        return sum;
     }
+
 }

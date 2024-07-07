@@ -1,21 +1,33 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Bins {
-    private int[] frequencies;
 
+    int low;
+    int high;
 
-    public Bins(int maxSum) {
-        frequencies = new int[maxSum - 1]; // Adjust for 0-based array
+    public Bins(int low, int high) {
+        this.low = low;
+        this.high = high;
     }
 
-    public void updateFrequency(int sum) {
-        frequencies[sum - 2]++; // Adjust for 0-based array and starting sum at 2
-    }
+    static HashMap<Integer, Integer> binMap = new HashMap<Integer, Integer>();
 
-    public void printResults() {
-        System.out.println("\nNumber\tFrequency\tPercentage");
-        System.out.println("-------\t---------\t--------");
-        for (int sum = 2; sum <= frequencies.length + 1; sum++) {
-            double total = 1;
-            System.out.println(sum + "\t\t" + frequencies[sum - 2] +  "\t\t\t" + (((total += frequencies[sum -2])-1)/((frequencies.length))));
+    //creates Bins and puts them into a hashmap with (Key: low ++ until high )(Value: occurrences from dice rolled)
+    public void createBins() {
+        for (int i = low; i <= high; i++) {
+            int temp = low++;
+            binMap.put(temp,0);
         }
+//        System.out.println(binMap);
+    }
+
+    public void incrementBin(int key){
+        binMap.get(key);
+        binMap.put(key, binMap.get(key) + 1);
+    }
+
+    public int getBin(int key){
+        return binMap.get(key);
     }
 }
